@@ -1,4 +1,6 @@
 *.pt
 .venv
 .idea
-/yolo*.pt
+yolo11s.pt
+yolo11x.pt
+yolov8x.pt
