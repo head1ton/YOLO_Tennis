@@ -1,6 +1,0 @@
-*.pt
-.venv
-.idea
-yolo11s.pt
-yolo11x.pt
-yolov8x.pt
