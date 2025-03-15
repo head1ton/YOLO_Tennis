@@ -1,6 +1,13 @@
 import cv2
 
+def mouse_callback(event, x, y, flags, param):
+    if event == cv2.EVENT_MOUSEMOVE:
+        print(f"Mouse Position: ({x}, {y})")
+
 def read_video(video_path):
+    # cv2.namedWindow("Tennis Detection")
+    # cv2.setMouseCallback("Tennis Detection", mouse_callback)
+
     cap = cv2.VideoCapture(video_path)
     frames = []
     while True:
@@ -9,7 +16,13 @@ def read_video(video_path):
             break
         frames.append(frame)
 
+        # cv2.imshow("Tennis Detection", frame)
+        #
+        # if cv2.waitKey(0) & 0xFF == ord('q'):
+        #     break
+
     cap.release()
+    # cv2.destroyAllWindows()
     return frames
 
 def save_video(output_video_frames, output_video_path):
