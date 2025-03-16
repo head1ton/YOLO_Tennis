@@ -28,6 +28,7 @@ def main():
         ret, frame = cap.read()
         if not ret:
             break
+
         video_frames.append(frame)
 
         player_detections = player_tracker.detect_frames(video_frames,
@@ -46,6 +47,10 @@ def main():
         player_detections = player_tracker.choose_and_filter_players(court_keypoints, player_detections)
 
         mini_court = MiniCourt(video_frames[0])
+        # print('video_frames : ', video_frames)
+        # print('video_frames[0] : ', video_frames[0])
+        ball_shot_frames = ball_tracker.get_ball_shot_frames(ball_detections)
+        # print(ball_shot_frames)
 
 
         output_video_frames = player_tracker.draw_bboxes(video_frames,player_detections)
@@ -62,7 +67,7 @@ def main():
 
         cv2.imshow("Tennis Detection", frame)
 
-        if cv2.waitKey(0) & 0xFF == ord('q'):
+        if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
     cap.release()
