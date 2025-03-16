@@ -65,8 +65,8 @@ class BallTracker:
             return ball_detections
 
         for frame in frames:
-            player_dict = self.detect_frame(frame)
-            ball_detections.append(player_dict)
+            ball_dict = self.detect_frame(frame)
+            ball_detections.append(ball_dict)
 
         if stub_path is not None:
             with open(stub_path, 'wb') as f:
@@ -84,9 +84,9 @@ class BallTracker:
 
         return ball_dict
 
-    def draw_bboxes(self, video_frames, player_detections):
+    def draw_bboxes(self, video_frames, ball_detections):
         output_video_frames = []
-        for frame, ball_dict in zip(video_frames, player_detections):
+        for frame, ball_dict in zip(video_frames, ball_detections):
             for track_id, bbox in ball_dict.items():
                 x1, y1, x2, y2 = bbox
                 cv2.putText(frame, f"Ball ID: {track_id}",(int(bbox[0]), int(bbox[1] - 10)), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 255), 2)
@@ -97,4 +97,4 @@ class BallTracker:
 
 
 # if __name__ == "__main__":
-#     test = PlayerTracker('yolov8x')
+#     test = BallTracker('yolov8x')
