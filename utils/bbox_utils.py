@@ -18,8 +18,7 @@ def get_closest_keypoint_index(point, keypoints, keypoint_indices):
     closest_distance = float('inf')
     key_point_ind = keypoint_indices[0]
     for keypoint_indix in keypoint_indices:
-        keypoint = keypoints[keypoint_indix * 2], keypoints[
-            keypoint_indix * 2 + 1]
+        keypoint = keypoints[keypoint_indix * 2], keypoints[keypoint_indix * 2 + 1]
         distance = abs(point[1] - keypoint[1])
 
         if distance < closest_distance:

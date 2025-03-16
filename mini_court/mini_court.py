@@ -92,6 +92,18 @@ class MiniCourt():
 
             (12, 13),
         ]
+        # self.lines = [
+        #     (0, 2),
+        #     (4, 5),
+        #     (6, 7),
+        #     (1, 3),
+        #
+        #     (0, 1),
+        #     (8, 9),
+        #     (10, 11),
+        #     (10, 11),
+        #     (2, 3)
+        # ]
 
     def set_mini_court_position(self):
         self.court_start_x = self.start_x + self.padding_court
@@ -203,7 +215,8 @@ class MiniCourt():
 
                 # Get The closest keypoint in pixels
                 closest_key_point_index = get_closest_keypoint_index(foot_position, original_court_key_points, [0, 2, 12, 13])
-                closest_key_point = (original_court_key_points[closest_key_point_index * 2], original_court_key_points[closest_key_point_index * 2 + 1])
+                closest_key_point = (original_court_key_points[closest_key_point_index * 2],
+                                     original_court_key_points[closest_key_point_index * 2 + 1])
 
                 # Get Player height in pixels
                 frame_index_min = max(0, frame_num - 20)
