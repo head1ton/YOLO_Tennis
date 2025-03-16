@@ -33,15 +33,13 @@ class BallTracker:
 
         minimum_change_frames_for_hit = 25
 
-        for i in range(1, len(df_ball_positions) - int(
-            minimum_change_frames_for_hit * 1.2)):
+        for i in range(1, len(df_ball_positions) - int(minimum_change_frames_for_hit * 1.2)):
             negative_position_change = df_ball_positions['delta_y'].iloc[i] > 0 and df_ball_positions['delta_y'].iloc[i + 1] < 0
             positive_position_change = df_ball_positions['delta_y'].iloc[i] < 0 and df_ball_positions['delta_y'].iloc[i + 1] > 0
 
             if negative_position_change or positive_position_change:
                 change_count = 0
-                for change_frame in range(i + 1, i + int(
-                    minimum_change_frames_for_hit * 1.2) + 1):
+                for change_frame in range(i + 1, i + int(minimum_change_frames_for_hit * 1.2) + 1):
                     negative_position_change_following_frame = df_ball_positions['delta_y'].iloc[i] > 0 and df_ball_positions['delta_y'].iloc[change_frame] < 0
                     positive_position_change_following_frame = df_ball_positions['delta_y'].iloc[i] < 0 and df_ball_positions['delta_y'].iloc[change_frame] > 0
 
@@ -77,7 +75,7 @@ class BallTracker:
         return ball_detections
 
     def detect_frame(self, frame):
-        results = self.model.predict(frame, conf=0.25)[0]
+        results = self.model.predict(frame, conf=0.15)[0]
 
         ball_dict = {}
         for box in results.boxes:
